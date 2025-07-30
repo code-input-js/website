@@ -4,7 +4,7 @@ body, html, nav, nav details ul, main {
 
 	font-family: "Noto Sans", sans-serif;
 	color: black;
-	background-color: white;
+	background-color: #eee;
 }
 nav {
 	height: 100px;
@@ -98,60 +98,56 @@ nav details ul li a {
 }
 
 a {
-	text-decoration: underline;
 	color: #33f;
 }
 a:visited {
-	color: #600;
+	color: #360;
 }
 a:hover, summary:hover::before {
-	color: #360;
+	color: #600;
 }
 a:active {
 	text-decoration: none;
 }
-main {
+h1, h2, dt {
+	font-weight: bold;
+}
+dd {
+	margin-left: 2.5em;
+	padding-left: 1em;
+	border-left: 0.5em solid #360;
+}
+main, footer {
 	margin-left: 30px;
 	margin-left: max(30px, calc(50% - 470px));
 	margin-right: 30px;
 	margin-right: max(30px, calc(50% - 470px));
-	margin-top: 130px;
+	margin-top: 30px;
 	margin-bottom: 30px;
+}
+main {
+	margin-top: 130px;
 }
 
 mark {
-	background-color: #ff0;
-	color: black;
+	background-color: transparent;
+	color: #440;
+	font-weight: bolder;
 }
 footer {
 	text-align: center;
 	padding: 10px;
+	border-top: 2px dashed #888;
 }
 
-::target {
-	animation: 1s no-repeat fade-from-yellow;
-}
-@-webkit-keyframes fade-from-yellow {
-	from {
-		background-color: #ff0;
-	}
-	to {
-		background-color: auto;
-	}
-}
-@keyframes fade-from-yellow {
-	from {
-		background-color: #ff0;
-	}
-	to {
-		background-color: auto;
-	}
+:target {
+	outline: 2px dashed #ff0;
 }
 
 @media (prefers-color-scheme: dark) {
 	body, html, nav, nav details ul, main {
 		color: white;
-		background-color: black;
+		background-color: #111;
 	}
 	nav details summary::before {
 		color: white;
@@ -160,14 +156,19 @@ footer {
 		color: #88f;
 	}
 	a:visited {
-		color: #f88;
-	}
-	a:hover, summary:hover::before {
 		color: #6f6;
 	}
+	a:hover, summary:hover::before {
+		color: #f88;
+	}
+	dd {
+		border-color: #6f6;
+	}
 	mark {
-		background-color: #660;
-		color: white;
+		color: #ff0;
+	}
+	:target {
+		outline-color: #440;
 	}
 }
 
