@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>code-input.js - Edit *and* highlight (and more)!</title>
+		<link rel="shortcut icon" href="/assets/logo.svg"/>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="utf-8"/>
+
+		<link rel="stylesheet" href="/style.css"/>
+		
+		<!--Import highlight.js-->
+		<!--For a downloaded version of highlight.js, replace the file paths for both CSS and.jss below with the relative file paths from this HTML file.-->
+		<!--This is similar to the "self hosted" example below.-->
+		<!--Guide: https://highlightjs.org/#usage#:~:text=As%20HTML%20Tags-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css" media="(prefers-color-scheme: light)">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/dark.min.css" media="(prefers-color-scheme: dark)">
+		<!--You can also choose custom themes by changing "default" above to the theme name from https://highlightjs.org/demo-->
+		<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+		    
+		<!--Import highlight.js languages-->
+		<!--You can copy this line to import additional languages, replacing "javascript" with a language name from https://highlightjs.org/demo.-->
+		<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/javascript.min.js"></script>
+		    
+		<!--Import code-input-->
+		<!--The same goes for downloaded versions.-->
+		<script src="/lib/code-input/code-input.min.js"></script>
+		<link rel="stylesheet" href="/lib/code-input/code-input.min.css">
+		    
+		<!--Import some code-input plugins-->
+		<!--The same goes for downloaded versions.-->
+		<!--Plugin files are here: https://github.com/WebCoder49/code-input/tree/main/plugins.-->
+		<script src="/lib/code-input/plugins/indent.min.js"></script>
+	</head>
+	<body>
+		<nav>
+			<details>
+				<summary>Navigation Menu</summary>
+				<ul>
+					<li><a href="#TODO"/>Documentation</a></li>
+					<li><a href="#TODO"/>Tests</a></li>
+					<li><a href="https://github.com/WebCoder49/code-input"/>GitHub</a></li>
+					<li><a href="https://codeberg.org/code-input-js/code-input"/>Codeberg</a></li>
+					<li><a href="https://yarnpkg.com/package?name=@webcoder49/code-input"/>Yarn</a></li>
+					<li><a href="https://npmjs.com/package/@webcoder49/code-input"/>NPM</a></li>
+				</ul>
+			</details>
+			<a href="/"><img src="/assets/wordmark.svg" alt="code-input.js wordmark; go to homepage" id="wordmark"/><img src="/assets/logo.svg" alt="code-input.js logo; go to homepage" id="logo"/></a>
+		</nav>
+		<script>
+			function openNavigationIfNeeded() {
+				if(document.body.clientWidth > 1500) {
+					document.querySelector("nav details").setAttribute("open", true);
+					document.querySelector("nav details summary").style.display = "none";
+				} else {
+					document.querySelector("nav details").removeAttribute("open");
+					document.querySelector("nav details summary").style.display = "block";
+				}
+			}
+			openNavigationIfNeeded();
+			window.addEventListener("resize", openNavigationIfNeeded);
+		</script>
+		<main>
+			<h1>An <mark>editable</mark> <code>&lt;textarea&gt;</code> that supports any <mark>syntax highlighting</mark> algorithm, for code or something else. <a href="#plugins">Also, added plugins.</a></h1>
+			<p>Aiming to be more <mark>flexible, lightweight, modular, progressively enhanced and standards-based</mark> than the alternatives, we support HTML forms, the <code>&lt;textarea&gt;</code> JavaScript interface, more languages and more use cases, but don't expect a heavyweight preconfigured IDE - you need to <a href="#plugins">select the plugins you want first <small>or use an alternative</small></a>.</p>	
+			
+			<!--Start demos-->
+			<script>
+				codeInput.registerTemplate("demo-in", new codeInput.templates.Hljs(hljs));
+				function updateDemo() {
+					document.getElementById('demo-out').src = URL.createObjectURL(new Blob([document.getElementById('demo-in').value], {type: "text/html"}));
+				}
+				function loadDemo(name) {
+					console.log("demo-preset-"+name);
+					document.getElementById('demo-in').value = document.getElementById("demo-preset-"+name).textContent; // From demos.js
+					updateDemo();
+				}
+				window.addEventListener("load", function() {
+					loadDemo(new FormData(document.getElementById("demo-presets-form")).get("preset"));
+				});
+			</script>	
+			<code-input id="demo-in" template="demo-in" language="HTML" oninput="updateDemo(new FormData(document.getElementById('demo-presets-form')).get("preset"));"><textarea code-input-fallback></textarea></code-input>
+			<iframe id="demo-out" style="resize: both; display: none;" href="data:text/html,Edit above to see here."></iframe>
+			<form id="demo-presets-form" onchange="loadDemo();" style="display: none;">	
+				<legend>Presets for demo above</legend>
+				<fieldset>
+					<legend>Demos</legend>
+					<label><input checked type="radio" name="preset" value="basic"></input>Basic Highlight.js Code Editor</label>
+				</fieldset>
+				<fieldset>
+					<legend>Tutorials by Example</legend>
+					<label>
+						<input type="radio" name="preset" value="prism" checked></input>Prism.js Code Editor (use <strong>with vanilla HTML here</strong> or <a href="#TODO">with ECMAScript Modules/Vue/Nuxt</a>)</label><br/>
+						<label><input type="radio" name="preset" value="hljs"></input>Highlight.js Code Editor (use <strong>with vanilla HTML here</strong> or <a href="#TODO">with ECMAScript Modules/Vue/Nuxt</a>)</label><br/>
+						<label><input type="radio" name="preset" value="custom"></input>Editor with Custom Highlighting Algorithm (use <strong>with vanilla HTML here</strong> or <a href="#TODO">with ECMAScript Modules/Vue/Nuxt</a>)</label></br>
+				</fieldset>
+			</form>
+			<div id="demo-presets-fallback">
+				<noscript><p>You've got JavaScript disabled. Above shows a code-input element's no-JavaScript fallback, and below is the demo preset code.</p></noscript>
+				<!--Demos-->
+				<h2>Demos</h2>
+				<h3>Basic Highlight.js Code Editor</h3>
+				<pre id="demo-preset-basic">&lt;!--basic: TODO--></pre>
+				<!--Tutorials by Example-->
+				<h3>Prism.js Code Editor (use <strong>with vanilla HTML here</strong> or <a href="#TODO">with ECMAScript Modules/Vue/Nuxt</a>)</h3>
+				<pre id="demo-preset-prism">&lt;!--prism: TODO--></pre>
+				<h3>highlight.js Code Editor (use <strong>with vanilla HTML here</strong> or <a href="#TODO">with ECMAScript Modules/Vue/Nuxt</a>)</h3>
+				<pre id="demo-preset-hljs">&lt;!--hljs: TODO--></pre>
+				<pre id="demo-preset-custom">&lt;!--custom: TODO--></pre>
+			</div>
+			<script>
+				document.getElementById("demo-out").style.display = "block";
+				document.getElementById("demo-presets-form").style.display = "block";
+				document.getElementById("demo-presets-fallback").style.display = "none";
+				// #demo-preset- will fill that demo
+				if(window.location.hash.substring(0, 13) == "#demo-preset-") {
+					let preset = document.location.hash.substring(13);
+					document.querySelector("#demo-presets-form input[value="+preset+"]").click(); // Preset alphanumeric so no need to escape
+					document.querySelector("#demo-in").scrollIntoView();
+				}
+			</script>
+			<style>
+				#demo-in, #demo-presets-form, #demo-out {
+					width: 100%;
+					margin: 0;
+					border: 1px dashed #888;
+				}
+				#demo-in, #demo-out {
+					height: 150px;
+					height: max(150px, 40vh);
+					resize: vertical;
+				}
+				#demo-out {
+					 background-color: white;
+				}
+			</style>
+			<!--End demos-->
+
+			<p>By using <code>code-input-js</code> and any syntax-highlighting library of your choosing, you can create editable, syntax-highlightable, customisable elements that look like <code>&lt;textarea&gt;</code>s to HTML forms and JavaScript code, look like normal non-editable <code>&lt;pre&gt;&lt;code&gt;</code> blocks to the syntax-highlighting library, and have a convenient plugin API plus existing plugins for commonly-wanted functionality.</p>
+			<h2 id="plugins">Many Plugins Provided, or Contribute your Own!</h2>
+			<p id="alternatives">Nevertheless, if code-input doesn't suit you and you want a fully-featured, packaged but likely heavier code editing component, and don't need compatibility with different highlighters, HTML forms or textarea APIs, we recommend something like <a href="https://codemirror.net/">CodeMirror</a>, <a href="https://ace.c9.io/">Ace</a> or <a href="https://microsoft.github.io/monaco-editor/">Monaco</a>.</p>
+		</main>
+	</body>
+	<footer>Content licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>, copyright its authors identified at the top of the page, code snippets presented in tutorials dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0-1.0</a> and website code licensed <a href="https://spdx.org/licenses/MIT">MIT/Expat</a>, copyright Oliver Geer and contributors. This is similar to Mozilla Developer Network's license.</footer>
+</html>

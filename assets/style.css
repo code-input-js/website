@@ -1,0 +1,183 @@
+body, html, nav, nav details ul, main {
+	margin: 0;
+	padding: 0;
+
+	font-family: "Noto Sans", sans-serif;
+	color: black;
+	background-color: white;
+}
+nav {
+	height: 100px;
+	width: min(calc(100% - 40px), 9060px);
+	position: fixed;
+	top: 0;
+	z-index: 2;
+
+	border-bottom: 2px solid #888;
+
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	padding-left: 20px;
+	padding-left: max(20px, calc(50% - 480px));
+	padding-right: 20px;
+	padding-right: max(20px, calc(50% - 480px));
+
+}
+/* Logo and homepage link */
+nav > a {
+	flex-basis: 0;
+}
+nav > a img {
+	height: 100%;
+}
+
+/* Logo or wordmark chosen responsively */
+#logo {
+	display: none;
+}
+#wordmark {
+	display: block;
+}
+@media (max-width: 600px) {
+	#logo {
+		display: block;
+	}
+	#wordmark {
+		display: none;
+	}
+}
+
+/* Hamburger icon */
+nav details summary::before {
+	content: "≡";
+
+	color: black;
+	font-size: 70px;
+
+	display: block;
+	height: 100px;
+	width: 100px;
+	text-align: center;
+	vertical-align: top;
+
+	cursor: pointer;
+}
+nav details[open] summary:before {
+	content: "×";
+}
+nav details summary {
+	/* Hide for all but screenreaders */
+	font-size: 0;
+}
+/* Hamburger menu */
+nav details ul {
+	position: fixed;
+	top: 102px;
+	z-index: 2;
+	height: calc(100% - 100px);
+	left: 0;
+	width: 100%;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+nav details ul li a {
+	font-size: 50px;
+	line-height: 80px;
+
+	display: block;
+	width: max(980px, calc(100% - 20px));
+	height: 80px;
+
+	margin: 0;
+	padding: 10px;
+	padding-left: max(10px, calc(50% - 490px));
+	padding-right: max(10px, calc(50% - 490px));
+	border-bottom: 2px solid #888;
+}
+
+a {
+	text-decoration: underline;
+	color: #33f;
+}
+a:visited {
+	color: #600;
+}
+a:hover, summary:hover::before {
+	color: #360;
+}
+a:active {
+	text-decoration: none;
+}
+main {
+	margin-left: 30px;
+	margin-left: max(30px, calc(50% - 470px));
+	margin-right: 30px;
+	margin-right: max(30px, calc(50% - 470px));
+	margin-top: 130px;
+	margin-bottom: 30px;
+}
+
+mark {
+	background-color: #ff0;
+	color: black;
+}
+footer {
+	text-align: center;
+	padding: 10px;
+}
+
+::target {
+	animation: 1s no-repeat fade-from-yellow;
+}
+@-webkit-keyframes fade-from-yellow {
+	from {
+		background-color: #ff0;
+	}
+	to {
+		background-color: auto;
+	}
+}
+@keyframes fade-from-yellow {
+	from {
+		background-color: #ff0;
+	}
+	to {
+		background-color: auto;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	body, html, nav, nav details ul, main {
+		color: white;
+		background-color: black;
+	}
+	nav details summary::before {
+		color: white;
+	}
+	a {
+		color: #88f;
+	}
+	a:visited {
+		color: #f88;
+	}
+	a:hover, summary:hover::before {
+		color: #6f6;
+	}
+	mark {
+		background-color: #660;
+		color: white;
+	}
+}
+
+@media (min-width: 1500px) {
+	nav details ul {
+		width: 270px;
+	}
+	nav details ul li a {
+		font-size: 30px;
+		line-height: 30px;
+		height: 30px;
+	}
+}
