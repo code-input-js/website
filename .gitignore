@@ -1,0 +1,8 @@
+# External content/libraries
+assets/lib/
+content/
+
+# Yarn/npm
+node_modules/
+# Hugo builds
+public/

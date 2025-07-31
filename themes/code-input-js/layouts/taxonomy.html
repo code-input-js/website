@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <a href="..">&lt; Up a Level</a>
+  {{ .Content }}
+  {{ if .Pages }}
+    <h2>Dive Deeper</h2>
+    {{ range .Pages }}
+      <li><code>{{ .Path }}</code> <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
+    {{ end }}
+  {{ end }}
+{{ end }}

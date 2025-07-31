@@ -1,0 +1,192 @@
+body, html, nav, nav details ul, main {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Noto Sans", sans-serif;
+  color: black;
+  background-color: white;
+}
+nav {
+  height: 100px;
+  width: min(calc(100% - 40px), 9060px);
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+  border-bottom: 2px solid #888;
+
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-left: 20px;
+  padding-left: max(20px, calc(50% - 480px));
+  padding-right: 20px;
+  padding-right: max(20px, calc(50% - 480px));
+
+}
+/* Logo and homepage link */
+nav > a {
+  flex-basis: 0;
+}
+nav > a img {
+  height: 100%;
+}
+
+/* Logo or wordmark chosen responsively */
+#logo {
+  display: none;
+}
+#wordmark {
+  display: block;
+}
+@media (max-width: 600px) {
+  #logo {
+    display: block;
+  }
+  #wordmark {
+    display: none;
+  }
+}
+
+/* Hamburger icon */
+nav details summary::before {
+  content: "≡";
+
+  color: black;
+  font-size: 70px;
+
+  display: block;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  vertical-align: top;
+
+  cursor: pointer;
+}
+nav details[open] summary:before {
+  content: "×";
+}
+nav details summary {
+  /* Hide for all but screenreaders */
+  font-size: 0;
+}
+/* Hamburger menu */
+nav details ul {
+  position: fixed;
+  top: 102px;
+  z-index: 2;
+  height: calc(100% - 100px);
+  left: 0;
+  width: 100%;
+
+  overflow-x: hidden;
+  white-space: wrap;
+  overflow-y: auto;
+}
+nav details ul li > a, nav details ul li > span {
+  font-size: 30px;
+  line-height: 40px;
+
+  display: block;
+  width: min(980px, calc(100% - 20px));
+
+  margin: 0;
+  padding: 10px;
+  padding-left: max(10px, calc(50% - 490px));
+  padding-right: max(10px, calc(50% - 490px));
+  border-bottom: 2px solid #888;
+}
+
+a {
+  color: #33f;
+}
+a:visited {
+  color: #360;
+}
+a:hover, summary:hover::before {
+  color: #600;
+}
+a:active {
+  text-decoration: none;
+}
+h1, h2, dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 2.5em;
+  padding-left: 1em;
+  border-left: 0.5em solid #360;
+}
+main, footer {
+  margin-left: 30px;
+  margin-left: max(30px, calc(50% - 470px));
+  margin-right: 30px;
+  margin-right: max(30px, calc(50% - 470px));
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+main {
+  margin-top: 130px;
+}
+
+mark {
+  background-color: transparent;
+  color: #440;
+  font-weight: bolder;
+}
+
+main img {
+  max-width: 100%;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  border-top: 2px dashed #888;
+}
+
+:target {
+  outline: 2px dashed #ff0;
+}
+
+@media (prefers-color-scheme: dark) {
+  body, html, nav, nav details ul, main {
+    color: white;
+    background-color: #111;
+  }
+  nav details summary::before {
+    color: white;
+  }
+  a {
+    color: #88f;
+  }
+  a:visited {
+    color: #6f6;
+  }
+  a:hover, summary:hover::before {
+    color: #f88;
+  }
+  dd {
+    border-color: #6f6;
+  }
+  mark {
+    color: #ff0;
+  }
+  :target {
+    outline-color: #440;
+  }
+  @media (prefers-contrast: more) {
+    body, html, nav, nav details ul, main {
+      background-color: black;
+    }
+  }
+}
+
+@media (min-width: 1500px) {
+  nav details ul {
+    width: 270px;
+  }
+  nav details ul li {
+    width: calc(100% - );
+  }
+}

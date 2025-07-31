@@ -1,0 +1,22 @@
+<nav>
+	<details>
+	<summary>Navigation Menu</summary>
+	<ul>
+		<li><span><s>v1</s> | <strong>{{ .Site.Param "version" }}</strong></span></li>
+		<li><a href="{{ .Site.BaseURL }}#pages"/>Docs and Tutorials</a></li>
+		<li><a href="https://github.com/WebCoder49/code-input/issues"/>Report a Bug / Suggest a Feature</a></li>
+		<li><a href="https://github.com/WebCoder49/code-input"/>GitHub</a></li>
+		<li><a href="https://codeberg.org/code-input-js/code-input"/>Codeberg</a></li>
+		<li><a href="https://yarnpkg.com/package?name=@webcoder49/code-input"/>Yarn</a></li>
+		<li><a href="https://npmjs.com/package/@webcoder49/code-input"/>NPM</a></li>
+	</ul>
+	</details>
+	<a href="/">
+		{{ with resources.Get "images/wordmark.svg" }}
+			<img src="{{ .RelPermalink }}" alt="code-input.js wordmark; go to homepage" id="wordmark"/>
+		{{ end }}
+		{{ with resources.Get "images/logo.svg" }}
+			<img src="{{ .RelPermalink }}" alt="code-input.js wordmark; go to homepage" id="logo"/>
+		{{ end }}
+	</a>
+</nav>

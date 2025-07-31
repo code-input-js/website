@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@webcoder49/code-input": "git+https://github.com/WebCoder49/code-input#docs",
+    "@highlightjs/cdn-assets": "^11.11.1"
+  }
+}

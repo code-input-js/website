@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{{ if .IsHome }}{{ printf "%s: %s" site.Title .Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+{{ with resources.Get "images/logo.svg" }}
+    <link rel="shortcut icon" href="{{ .RelPermalink }}"/>
+{{ end }}
+
+{{ with resources.Get "lib/@highlightjs/cdn-assets/styles/a11y-light.min.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" media="(prefers-color-scheme: light)">
+{{ end }}
+{{ with resources.Get "lib/@highlightjs/cdn-assets/styles/a11y-dark.min.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" media="(prefers-color-scheme: dark)">
+{{ end }}
+{{ with resources.Get "lib/@highlightjs/cdn-assets/highlight.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+<script>hljs.highlightAll();</script>
+
+{{ partialCached "head/css.html" . }}
+
+<script>
+function openNavigationIfNeeded() {
+    if(document.body.clientWidth > 1500) {
+        document.querySelector("nav details").setAttribute("open", true);
+        document.querySelector("nav details summary").style.display = "none";
+    } else {
+        document.querySelector("nav details").removeAttribute("open");
+        document.querySelector("nav details summary").style.display = "block";
+    }
+}
+window.addEventListener("DOMContentLoaded", openNavigationIfNeeded);
+window.addEventListener("resize", openNavigationIfNeeded);
+</script>

@@ -1,0 +1,188 @@
+<!--
+# Usage
+Surrounds mandatory h3s heading each section, where each section contains h4 then pre repeated, with h4 containing
+the name of a preset demo, with an ID playground-preset-name where name is a unique ID, and pre containing the HTML
+code of the demo.
+
+May only be used once per page.
+-->
+
+
+<!--Import highlight.js-->
+<!--For a downloaded version of highlight.js, replace the file paths for both CSS and.jss below with the relative file paths from this HTML file.-->
+<!--This is similar to the "self hosted" example below.-->
+<!--Guide: https://highlightjs.org/#usage#:~:text=As%20HTML%20Tags-->
+{{ with resources.Get "lib/@highlightjs/cdn-assets/build/styles/a11y-light.min.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" media="(prefers-color-scheme: light)">
+{{ end }}
+{{ with resources.Get "lib/@highlightjs/cdn-assets/build/styles/a11y-dark.min.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" media="(prefers-color-scheme: dark)">
+{{ end }}
+<!--You can also choose custom themes by changing "default" above to the theme name from https://highlightjs.org/playground-->
+{{ with resources.Get "lib/@highlightjs/cdn-assets/build/highlight.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11/build/highlight.min.js"></script>
+
+<!--Import highlight.js languages-->
+<!--You can copy this line to import additional languages, replacing "html" with a language name from https://highlightjs.org/playground.-->
+{{ with resources.Get "lib/@highlightjs/cdn-assets/build/languages/html.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11/build/languages/html.min.js"></script>
+
+<!--Import code-input-->
+<!--The same goes for downloaded versions.-->
+{{ with resources.Get "lib/@webcoder49/code-input/code-input.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+{{ with resources.Get "lib/@webcoder49/code-input/code-input.min.css" }}
+	<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
+<!--Plugins used here for URL interaction-->
+{{ with resources.Get "lib/@webcoder49/code-input/plugins/autocomplete.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+{{ with resources.Get "lib/@webcoder49/code-input/plugins/autocomplete.min.css" }}
+	<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
+<!--Keystroke plugins-->
+{{ with resources.Get "lib/@webcoder49/code-input/plugins/auto-close-brackets.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+{{ with resources.Get "lib/@webcoder49/code-input/plugins/indent.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+<!--Code tool plugins-->
+{{ with resources.Get "lib/@webcoder49/code-input/plugins/find-and-replace.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+{{ with resources.Get "lib/@webcoder49/code-input/plugins/find-and-replace.min.css" }}
+	<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
+{{ with resources.Get "lib/@webcoder49/code-input/plugins/go-to-line.min.js" }}
+	<script src="{{ .RelPermalink }}"></script>
+{{ end }}
+{{ with resources.Get "lib/@webcoder49/code-input/plugins/go-to-line.min.css" }}
+	<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
+<form id="playground-presets-form" style="display: none;"></form>
+<div id="playground-presets-fallback">
+    <noscript><p>You've got JavaScript disabled. You'll see the code-input element's no-JavaScript fallback.</p></noscript>
+    {{ .Inner | markdownify }}
+</div>
+<code-input id="playground-in" template="playground-in" language="HTML" oninput="updateDemo();"><textarea code-input-fallback></textarea></code-input>
+<iframe id="playground-out" style="resize: both; display: none;" href="data:text/html,Loading"></iframe>
+<script>
+    // Fill #playground-presets-form
+    const playgroundPresetsElements = document.querySelectorAll("#playground-presets-fallback h3, #playground-presets-fallback h4, #playground-presets-fallback pre");
+    let lastFieldset = null;
+    let nextInputHTML = "";
+    let nextInputValue = "";
+    const playgroundCode = {};
+    for(let i = 0; i < playgroundPresetsElements.length; i++) {
+        const tagName = playgroundPresetsElements[i].tagName.toLowerCase();
+        if(tagName == "h3") {
+            // Start new fieldset
+            if(lastFieldset != null) document.getElementById("playground-presets-form").append(lastFieldset);
+            lastFieldset = document.createElement("fieldset");
+            const legend = document.createElement("legend");
+            legend.innerHTML = playgroundPresetsElements[i].innerHTML;
+            lastFieldset.append(legend);
+        } else if(tagName == "h4") {
+            // Name new input
+            nextInputHTML = playgroundPresetsElements[i].innerHTML;
+			if(playgroundPresetsElements[i].id.substring(0, 18) != "playground-preset-") throw new Error("Editor preset fallback has a h4 element with a non playground-preset-name id ('"+playgroundPresetsElements[i].id+"')");
+			nextInputValue = playgroundPresetsElements[i].id.substring(18); // Remove playground-preset-
+        } else if(tagName == "pre") {
+            if(nextInputHTML == "") throw new Error("Editor preset fallback has a pre element before its h4 title");
+            if(lastFieldset == null) throw new Error("Editor preset fallback has a pre element before its category's h3 title");
+            // Add new input
+            const label = document.createElement("label");
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "preset";
+            input.value = nextInputValue;
+            label.append(input);
+            label.innerHTML += nextInputHTML;
+            lastFieldset.append(label);
+            const br = document.createElement("br");
+            lastFieldset.append(br);
+            playgroundCode[nextInputValue] = playgroundPresetsElements[i].textContent;
+        }
+    }
+    if(lastFieldset != null) document.getElementById("playground-presets-form").append(lastFieldset);
+    document.querySelector("#playground-presets-form input").checked = true; // Select first playground
+
+    document.getElementById("playground-out").style.display = "block";
+    document.getElementById("playground-presets-form").style.display = "block";
+    document.getElementById("playground-presets-fallback").style.display = "none";
+    // #playground-preset- will fill that playground
+    function checkHash() {
+        if(window.location.hash.substring(0, 19) == "#playground-preset-") {
+            let preset = document.location.hash.substring(19);
+            document.querySelector("#playground-presets-form input[value="+preset+"]").click(); // Preset alphanumeric so no need to escape
+            document.getElementById("playground-presets-form").scrollIntoView();
+        }
+    }
+    checkHash();
+    window.addEventListener("load", function() {
+        const anchorElems = document.querySelectorAll("a");
+        for(let i = 0; i < anchorElems.length; i++) {
+            anchorElems[i].addEventListener("click", function(event) {
+                if(event.ctrlKey) return true; // Open in new tab
+                window.location.href = this.href; // Follow link
+                checkHash(); // If still here check hash
+                return false; // Prevent normal link behaviour
+            });
+        }
+    });
+
+    codeInput.registerTemplate("playground-in", new codeInput.templates.Hljs(hljs, [
+        // Keystrokes
+        new codeInput.plugins.Indent(false),
+        new codeInput.plugins.AutoCloseBrackets({"<": ">", '"': '"'}),
+        // Code tools
+        new codeInput.plugins.FindAndReplace(),
+        new codeInput.plugins.GoToLine(),
+    ]));
+    function updateDemo() {
+        const lastSrc = document.getElementById('playground-out').src;
+        if(lastSrc !== "data:text/html,Loading") {
+                URL.revokeObjectURL(lastSrc); // Reduces memory usage
+        }
+        document.getElementById('playground-out').src = URL.createObjectURL(new Blob([document.getElementById('playground-in').value], {type: "text/html"}));
+    }
+    function loadDemo(name) {
+        document.getElementById('playground-in').value = playgroundCode[name]; // From playgrounds.js
+        updateDemo();
+    }
+    window.addEventListener("load", function() {
+        loadDemo(new FormData(document.getElementById("playground-presets-form")).get("preset"));
+        document.getElementById("playground-presets-form").addEventListener("change", function() {
+            loadDemo(new FormData(document.getElementById("playground-presets-form")).get("preset"));
+        });
+    });
+</script>
+<style>
+    #playground-in, #playground-out {
+        width: calc(100% - 20px);
+        margin: 0;
+        font-size: inherit;
+        border: 10px solid #888;
+    }
+    #playground-in {
+        border-bottom: 1px dashed #888;
+    }
+    #playground-out {
+        border-top: 1px dashed #888;
+    }
+    #playground-in, #playground-out {
+        height: min(400px, calc(50vh - 65px));
+        resize: vertical;
+    }
+    #playground-out {
+            background-color: white;
+    }
+</style>

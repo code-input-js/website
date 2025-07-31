@@ -1,0 +1,7 @@
+{{ define "main" }}
+  {{ .Content }}
+  <h2 id="pages">Dive Deeper</h2>
+  {{ range .Pages }}
+    <li><code>{{ .Path }}</code> <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
+  {{ end }}
+{{ end }}

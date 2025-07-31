@@ -1,0 +1,24 @@
+baseURL = 'https://v2.code-input-js.org/'
+languageCode = 'en-gb'
+title = 'code-input.js'
+theme = 'code-input-js'
+
+[params]
+   version = 'v2.6.0'
+
+[markup.goldmark.renderer]
+   unsafe = true
+
+# Using client-side highlight.js instead (same as code-input, to avoid redundancy)
+[markup.highlight]
+   anchorLineNos = false
+   codeFences = false
+   guessSyntax = false
+   hl_Lines = ""
+   lineAnchors = ""
+   lineNoStart = ""
+   lineNos = false
+   lineNumbersInTable = false
+   noClasses = false
+   style = ""
+   tabWidth = ""
