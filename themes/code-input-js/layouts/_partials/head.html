@@ -17,17 +17,3 @@
 <script>hljs.highlightAll();</script>
 
 {{ partialCached "head/css.html" . }}
-
-<script>
-function openNavigationIfNeeded() {
-    if(document.body.clientWidth > 1500) {
-        document.querySelector("nav details").setAttribute("open", true);
-        document.querySelector("nav details summary").style.display = "none";
-    } else {
-        document.querySelector("nav details").removeAttribute("open");
-        document.querySelector("nav details summary").style.display = "block";
-    }
-}
-window.addEventListener("DOMContentLoaded", openNavigationIfNeeded);
-window.addEventListener("resize", openNavigationIfNeeded);
-</script>

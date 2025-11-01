@@ -4,11 +4,13 @@
 	<ul>
 		<li><span><s>v1</s> | <strong>{{ .Site.Param "version" }}</strong></span></li>
 		<li><a href="{{ .Site.BaseURL }}#pages"/>Docs and Tutorials</a></li>
-		<li><a href="https://github.com/WebCoder49/code-input/issues"/>Report a Bug / Suggest a Feature</a></li>
-		<li><a href="https://github.com/WebCoder49/code-input"/>GitHub</a></li>
-		<li><a href="https://codeberg.org/code-input-js/code-input"/>Codeberg</a></li>
-		<li><a href="https://yarnpkg.com/package?name=@webcoder49/code-input"/>Yarn</a></li>
-		<li><a href="https://npmjs.com/package/@webcoder49/code-input"/>NPM</a></li>
+		<li><a href="https://github.com/WebCoder49/code-input/tree/v2.6.0"/>Code on GitHub</a></li>
+		<!--<li><a href="https://codeberg.org/code-input-js/code-input"/>Code on Codeberg</a></li>-->
+		<li><a href="{{ .Site.BaseURL }}release/code-input-js-v2.6.0.zip"/>Download as ZIP</a></li>
+		<li><a href="{{ .Site.BaseURL }}release/code-input-js-v2.6.0.tar.gz"/>Download as TAR.GZ</a></li>
+		<li><a href="https://yarnpkg.com/package?name=@webcoder49/code-input"/>Package on Yarn</a></li>
+		<li><a href="https://npmjs.com/package/@webcoder49/code-input"/>Package on NPM</a></li>
+		<li><a href="{{ .Site.BaseURL }}#contributing">Contribute Bug Reports / Code / Docs</a></li>
 	</ul>
 	</details>
 	<a href="/">
@@ -20,3 +22,17 @@
 		{{ end }}
 	</a>
 </nav>
+
+<script>
+function openNavigationIfNeeded() {
+    if(document.body.clientWidth > 1500) {
+        document.querySelector("nav details").setAttribute("open", true);
+        document.querySelector("nav details summary").style.display = "none";
+    } else {
+        document.querySelector("nav details").removeAttribute("open");
+        document.querySelector("nav details summary").style.display = "block";
+    }
+}
+openNavigationIfNeeded();
+window.addEventListener("resize", openNavigationIfNeeded);
+</script>

@@ -3,8 +3,10 @@
   {{ .Content }}
   {{ if .Pages }}
     <h2>Dive Deeper</h2>
-    {{ range .Pages }}
-      <li><code>{{ .Path }}</code> <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
-    {{ end }}
+    <ul>
+      {{ range .Pages }}
+        <li><code>{{ .Path }}</code> <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></li>
+      {{ end }}
+    </ul>
   {{ end }}
 {{ end }}

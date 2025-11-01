@@ -1,0 +1,31 @@
+#playground-in, #playground-out, #playground-message {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    font-size: inherit;
+    border: 8px solid #888;
+}
+#playground-in {
+    border-bottom: 1px dashed #888;
+    --padding: 20px; /* for code-input elements */
+}
+#playground-out, #playground-message {
+    border-top: 1px dashed #888;
+}
+#playground-in, #playground-out {
+    height: min(400px, calc(50vh - 65px));
+    resize: vertical;
+}
+#playground-out {
+    background-color: white;
+}
+#playground-message {
+    position: static;
+    padding: 20px;
+
+    background: transparent;
+    color: inherit;
+}
+#playground-message input[type=submit] {
+    font-size: 200%;
+}

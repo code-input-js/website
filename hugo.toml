@@ -4,8 +4,10 @@ title = 'code-input.js'
 theme = 'code-input-js'
 
 [params]
-   version = 'v2.6.0'
+   version = 'v2.7.2'
 
+# Just works better with the docs; docs content is quality-and-security-controlled
+# by the maintainer.
 [markup.goldmark.renderer]
    unsafe = true
 
