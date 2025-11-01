@@ -4,10 +4,10 @@
 	<ul>
 		<li><span><s>v1</s> | <strong>{{ .Site.Param "version" }}</strong></span></li>
 		<li><a href="{{ .Site.BaseURL }}#pages"/>Docs and Tutorials</a></li>
-		<li><a href="https://github.com/WebCoder49/code-input/tree/v2.6.0"/>Code on GitHub</a></li>
+		<li><a href="https://github.com/WebCoder49/code-input/tree/{{ .Site.Param "version" }}"/>Code on GitHub</a></li>
 		<!--<li><a href="https://codeberg.org/code-input-js/code-input"/>Code on Codeberg</a></li>-->
-		<li><a href="{{ .Site.BaseURL }}release/code-input-js-v2.6.0.zip"/>Download as ZIP</a></li>
-		<li><a href="{{ .Site.BaseURL }}release/code-input-js-v2.6.0.tar.gz"/>Download as TAR.GZ</a></li>
+		<li><a href="{{ .Site.BaseURL }}release/code-input-js-{{ .Site.Param "version" }}.zip"/>Download as ZIP</a></li>
+		<li><a href="{{ .Site.BaseURL }}release/code-input-js-{{ .Site.Param "version" }}.tar.gz"/>Download as TAR.GZ</a></li>
 		<li><a href="https://yarnpkg.com/package?name=@webcoder49/code-input"/>Package on Yarn</a></li>
 		<li><a href="https://npmjs.com/package/@webcoder49/code-input"/>Package on NPM</a></li>
 		<li><a href="{{ .Site.BaseURL }}#contributing">Contribute Bug Reports / Code / Docs</a></li>
@@ -18,7 +18,7 @@
 			<img src="{{ .RelPermalink }}" alt="code-input.js wordmark; go to homepage" id="wordmark"/>
 		{{ end }}
 		{{ with resources.Get "images/logo.svg" }}
-			<img src="{{ .RelPermalink }}" alt="code-input.js wordmark; go to homepage" id="logo"/>
+			<img src="{{ .RelPermalink }}" alt="code-input.js logo; go to homepage" id="logo"/>
 		{{ end }}
 	</a>
 </nav>
