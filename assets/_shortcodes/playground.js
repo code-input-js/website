@@ -67,7 +67,7 @@ codeInput.registerTemplate("playground-in", new codeInput.templates.Hljs(hljs, [
     new codeInput.plugins.Indent(true, 4),
     new codeInput.plugins.AutoCloseBrackets({"<": ">", '"': '"'}),
     // Code tools
-    new codeInput.plugins.FindAndReplace(),
+    new codeInput.plugins.FindAndReplace(true, true, {}, false), // Last false required for Cmd+F on Apple operating systems 
     new codeInput.plugins.GoToLine(),
 ]));
 function updateDemo() {
