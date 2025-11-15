@@ -1,10 +1,16 @@
 <!--
+A Hugo shortcode template (https://gohugo.io/templates/shortcode/), not just plain HTML.
+
 # Usage
+The current version can only be used once per page because it uses IDs which work well as link targets but have this side effect.
+
 Surrounds mandatory h3s heading each section, where each section contains h4 then pre repeated, with h4 containing
 the name of a preset demo, with an ID playground-preset-name where name is a unique ID, and pre containing the HTML
 code of the demo.
 
-May only be used once per page.
+(This website uses progressive enhancement a lot. You'll see the code-input element works well with it, like the code as mentioned above, which is placed in pre elements for HTML-only support and then is transformed to an interactive demo at little extra cost.)
+
+All the code of this website is Copyright (c) 2025 Oliver Geer and contributors and licensed MIT/Expat.
 -->
 
 
@@ -70,7 +76,7 @@ May only be used once per page.
 <code-input id="playground-in" template="playground-in" language="HTML" oninput="if(!document.getElementById('playground-message').open) updateDemo();"><textarea data-code-input-fallback></textarea></code-input>
 <dialog id="playground-message" open closedby="none" onclose="updateDemo();">
 	<form method="dialog">
-		<p>This demo's editor uses code-input.js; its implementation can be found by inspecting, or is <a href="">here</a>, <a href="">here</a> and <a href="https://github.com/code-input-js/website/tree/main/assets/_shortcodes">here (GitHub)</a> (all on GitHub).</p>
+		<p>This demo's editor uses code-input.js; its implementation can be found by inspecting, or is here: <a href="https://github.com/code-input-js/website/blob/main/layouts/_shortcodes/playground.html">HTML</a>, <a href="https://github.com/code-input-js/website/tree/main/assets/_shortcodes/playground.js">CSS</a>, <a href="https://github.com/code-input-js/website/tree/main/assets/_shortcodes/playground.css">JavaScript</a> (all on GitHub).</p>
 		<p>For convenience and portability of code, the default code above uses external resources from <a href="https://jsdelivr.com">JSDelivr CDN</a>.</p>
 		<p>In production, for more privacy and security you can download and host them yourself.</p>
 		<p>OK with loading them?</p>
