@@ -12,10 +12,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@webcoder49/code-input@https://github.com/WebCoder49/code-input":
-  version: 2.7.0
-  resolution: "@webcoder49/code-input@https://github.com/WebCoder49/code-input.git#commit=e709545aae0f0b2bf9689012b911899cec3d288f"
-  checksum: 10c0/60545edb6121cef0d1d7a32913383dec9e686e91395daf64771792f6bda4b216407e63ba140da1764b2226220fdae4a1f542d6accbf87756495b8bc0f5698c23
+"@webcoder49/code-input@npm:v2.8.2":
+  version: 2.8.2
+  resolution: "@webcoder49/code-input@npm:2.8.2"
+  checksum: 10c0/3325637f67de4a04bdbea41ce8dcc0bda2e89af365d2c8ecabf6cac5479330eaf08748b09f7c6936fe3b2e645b5858db2c59ef9ca3c91a53b4c1d339962e4fbc
   languageName: node
   linkType: hard
 
@@ -31,7 +31,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@highlightjs/cdn-assets": "npm:^11.11.1"
-    "@webcoder49/code-input": "https://github.com/WebCoder49/code-input"
+    "@webcoder49/code-input": "npm:v2.8.2"
     highlight.js: "npm:^11.11.1"
   languageName: unknown
   linkType: soft
