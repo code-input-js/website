@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@highlightjs/cdn-assets": "^11.11.1",
-    "@webcoder49/code-input": "v2.8.2",
+    "@webcoder49/code-input": "2.9.0",
     "highlight.js": "^11.11.1"
   }
 }

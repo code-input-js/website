@@ -11,7 +11,7 @@ nav {
   width: min(calc(100% - 40px), 9060px);
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 3;
 
   border-bottom: 2px solid #888;
 
@@ -74,7 +74,7 @@ nav details summary {
 nav details ul {
   position: fixed;
   top: 102px;
-  z-index: 2;
+  z-index: 3;
   height: calc(100% - 100px);
   left: 0;
   width: 100%;
@@ -137,6 +137,11 @@ mark {
 
 main img {
   max-width: 100%;
+}
+
+main code {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 footer {

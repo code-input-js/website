@@ -12,10 +12,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@webcoder49/code-input@npm:v2.8.2":
-  version: 2.8.2
-  resolution: "@webcoder49/code-input@npm:2.8.2"
-  checksum: 10c0/3325637f67de4a04bdbea41ce8dcc0bda2e89af365d2c8ecabf6cac5479330eaf08748b09f7c6936fe3b2e645b5858db2c59ef9ca3c91a53b4c1d339962e4fbc
+"@webcoder49/code-input@npm:2.9.0":
+  version: 2.9.0
+  resolution: "@webcoder49/code-input@npm:2.9.0"
+  checksum: 10c0/6c87c8de057d3b21a797cf03a88fbefa2cc840225c8bf935dc2dec31d8295d4deeb8558ba7a7c317173bd9a3fe8d42dee073668b75eaac44f9cefbe2ad7e3748
   languageName: node
   linkType: hard
 
@@ -31,7 +31,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@highlightjs/cdn-assets": "npm:^11.11.1"
-    "@webcoder49/code-input": "npm:v2.8.2"
+    "@webcoder49/code-input": "npm:2.9.0"
     highlight.js: "npm:^11.11.1"
   languageName: unknown
   linkType: soft

@@ -4,7 +4,7 @@ title = 'code-input.js'
 theme = 'code-input-js'
 
 [params]
-   version = 'v2.8.2'
+   version = 'v2.9.0'
 
 # Just works better with the docs; docs content is quality-and-security-controlled
 # by the maintainer.
