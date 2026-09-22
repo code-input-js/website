@@ -81,7 +81,7 @@ function updateDemo() {
 function loadDemo(name) {
     document.getElementById('playground-in').value = playgroundCode[name]; // From playgrounds.js
     // Don't update demo here so external resources not loaded until user accepts
-    if(!document.getElementById('playground-message').open) updateDemo();
+    if(document.getElementById('playground-message').style.display == "none") updateDemo();
 }
 loadDemo(new FormData(document.getElementById("playground-presets-form")).get("preset"));
     document.getElementById("playground-presets-form").addEventListener("change", function() {

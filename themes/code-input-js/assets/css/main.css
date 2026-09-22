@@ -139,7 +139,7 @@ main img {
   max-width: 100%;
 }
 
-main code:not(code-input code) {
+main pre:not(code-input pre) {
   max-width: 100%;
   overflow-x: auto;
 }

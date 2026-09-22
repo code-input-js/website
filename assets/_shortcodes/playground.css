@@ -5,6 +5,15 @@
     font-size: inherit;
     border: 8px solid #888;
 }
+#playground-message button {
+    border: 8px solid #888;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 200%;
+}
+#playground-message button:hover {
+    background-color: #ff04;
+}
 #playground-in {
     border-bottom: 1px dashed #888;
     --padding: 20px; /* for code-input elements */
@@ -25,7 +34,4 @@
 
     background: transparent;
     color: inherit;
-}
-#playground-message input[type=submit] {
-    font-size: 200%;
 }

@@ -74,15 +74,14 @@ All the code of this website is Copyright (c) 2025 Oliver Geer and contributors 
     {{ .Inner | markdownify }}
 </div>
 <code-input id="playground-in" template="playground-in" language="HTML" oninput="if(!document.getElementById('playground-message').open) updateDemo();"><textarea data-code-input-fallback></textarea></code-input>
-<dialog id="playground-message" open closedby="none" onclose="updateDemo();">
-	<form method="dialog">
-		<p>This demo's editor uses code-input.js; its implementation can be found by inspecting, or is here: <a href="https://github.com/code-input-js/website/blob/main/layouts/_shortcodes/playground.html">HTML</a>, <a href="https://github.com/code-input-js/website/tree/main/assets/_shortcodes/playground.js">CSS</a>, <a href="https://github.com/code-input-js/website/tree/main/assets/_shortcodes/playground.css">JavaScript</a> (all on GitHub).</p>
-		<p>For convenience and portability of code, the default code above uses external resources from <a href="https://jsdelivr.com">JSDelivr CDN</a>.</p>
-		<p>In production, for more privacy and security you can download and host them yourself.</p>
-		<p>OK with loading them?</p>
-                <input type="submit" value="Click to View Result."></input> (editing afterwards will live-update)
-	</form>
-</dialog>
+<section id="playground-message">
+	<h3>Demo Information</h3>
+	<p>This demo's editor uses code-input.js; its implementation can be found by inspecting, or is here: <a href="https://github.com/code-input-js/website/blob/main/layouts/_shortcodes/playground.html">HTML</a>, <a href="https://github.com/code-input-js/website/tree/main/assets/_shortcodes/playground.js">CSS</a>, <a href="https://github.com/code-input-js/website/tree/main/assets/_shortcodes/playground.css">JavaScript</a> (all on GitHub).</p>
+	<p>For convenience and portability of code, the default code above uses external resources from <a href="https://jsdelivr.com">JSDelivr CDN</a>.</p>
+	<p>In production, for more privacy and security you can download and host them yourself.</p>
+	<p>OK with loading them?</p>
+	<button onclick="this.parentElement.style.display = 'none'; updateDemo();">Click to View Result.</button> (editing afterwards will live-update)
+</section>
 <iframe id="playground-out" style="resize: both; display: none;" href="data:text/html,Loading"></iframe>
 {{- with resources.Get "_shortcodes/playground.js" }}
   {{- if hugo.IsDevelopment }}
